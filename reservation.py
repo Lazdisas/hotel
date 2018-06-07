@@ -1,4 +1,7 @@
-﻿hotels_list = []
+﻿from random import randint
+import twilio
+from twilio.rest import Client
+hotels_list = []
 customers_list = []
 reservation_list = []
 # hotels_list.append([1,"hotel1","City1",7,7])
@@ -44,13 +47,14 @@ def add_hotel(number,hotel_name, city,total_rooms,empty_rooms):
             print("-------------------------")
 
 
-def add_customer(customer_name):
+def add_customer(customer_name, phone):
+    new_customer = [customer_name,phone]
     bool_customer = True
     for customer in customers_list:
-        if customer_name == customer:
+        if new_customer == customer:
             bool_customer = False
     if bool_customer:
-        customers_list.append(customer_name)
+        customers_list.append(new_customer)
 
 def view_all_customer():
     i = 0
@@ -58,7 +62,7 @@ def view_all_customer():
     print "All Customer Name:"
     print "-"*100
     while i < len(customers_list):
-        print "Customer N:{}, Name is : {}".format(i,customers_list[i])
+        print "Customer N:{}, Name is : {} Phone Number : {}".format(i,customers_list[i][0],customers_list[i][1])
         i += 1
     print "-"*100
 
@@ -70,7 +74,7 @@ def view_all_customer():
 #Pratic
 for i in range(10):
     add_hotel(i,"hotel{}".format(i),"City{}".format(i),7,7)
-    add_customer("name{}".format(i))
+    add_customer("name{}".format(i),"+000{}".format(randint(000000000,999999999)))
 
 
 
@@ -86,8 +90,8 @@ add_hotel(3,"hotel8","City",7,7)
 add_hotel(3,"hotel9","City",7,7)
 
 
-add_customer("Sami")
-add_customer("Hocin")
+add_customer("Sami","+213557098309")
+add_customer("Hocin","+213672899204")
 
 #print list of hotels
 view_all_hotels()
@@ -113,6 +117,10 @@ def reserve_room (hotel_name):
 def add_new_reservation(hotel_name, customer_name):
     if reserve_room(hotel_name):
         reservation_list.append([hotel_name,customer_name])
+        for customer in customers_list:
+            if customer_name == customer[0]:jsdhfgjshdgf
+                print(customer_name)
+                send_text_message(customer_name,customer[1])
         print "confirmation"
     else:
         print "sorry no rooms available"
@@ -139,8 +147,20 @@ def list_resevrations_for_hotel(hotel_name):
     print "This names is reservation in Hotel {}: {}".format(hotel_name,reservation_name)
     # search for hotel_name in reservation list and print customer name
 
+def send_text_message(message, number):
+    account_sid = "AC1b77cc0b7b2e665781f94cef4d812***"
+    auth_token = "3f13cf63cd93c88063c629b6204*****"
+    client = Client(account_sid, auth_token)
+    # message = client.messages.create(
+    #     body = message,
+    #     to = number,
+    #     from_ = "+17163303168"
+    #     )
+    # print(message.sid)
+    return True
 
-
+# use twilio to send the message
+# send_text_message("salam","+17163303168")
 
 add_new_reservation("hotel1","Sami")
 add_new_reservation("hotel1","Sami")
