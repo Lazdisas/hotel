@@ -8,8 +8,9 @@
 
 
 class Hotel:
-    def __int__(self, number, hotel_name, city, total_rooms, empty_rooms):
-        print("hotel")
+    hotels = []
+    def __init__(self, number, hotel_name, city, total_rooms, empty_rooms):
+        print("Successfully created new {} hotel".format(hotel_name))
         self.number = number
         self.hotel_name = hotel_name
         self.city = city
@@ -17,8 +18,9 @@ class Hotel:
         self.empty_rooms = empty_rooms
 
         Hotel.hotels.append([self.number,self.hotel_name,self.city,self.total_rooms,self.empty_rooms])
-    hotels = []
+
     def add_hotel(self):
+        print("---add hotel---")
         newHotel = [self.number,self.hotel_name, self.city,self.total_rooms,self.empty_rooms]
         bool_number = True
         bool_name = True
@@ -46,20 +48,24 @@ class Hotel:
             Hotel.hotels.append(newHotel)
             print("Seccesfuly add hotel {}".format(newHotel))
             print("-------------------------")
+        print("---end add hotel---")
 
 
     def view_all_hotels(self):
+        print("---view all hotels---")
         print
         print "List Of Hotels:"
         print "-"*100
         for hotel in Hotel.hotels:
             print "Hotel N°: {}, Hotel Name: {}, City: {}, Total rooms: {}, Empty rooms: {}".format(hotel[0],hotel[1],hotel[2],hotel[3],hotel[4])
         print "-"*100
+        print("---end view all hotels---")
 
     # for i in range(10):
     #     add_hotel(i,"hotel{}".format(i),"City{}".format(i),7,7)
 
     def list_hotels_in_city(self,city_name):
+        print("---search hotels in city---")
         list_of_hotel_in_city =[]
         i = 0
         while i < len(Hotel.hotels):
@@ -67,6 +73,7 @@ class Hotel:
                 list_of_hotel_in_city.append(Hotel.hotels[i][1])
             i += 1
         print "List of hotel in {} is: {}".format(city_name,list_of_hotel_in_city)
+        print("---end search hotels in city---")
 
     # add_hotel(10,"hotel1","City",10,0)
     # add_hotel(3,"hotel1","City",7,8)
