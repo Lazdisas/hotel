@@ -11,16 +11,15 @@ class Notification:
 
     def send_text_message(self):
         print("---send sms---")
-        # Algeria Country
-        account_sid = "AC1b77cc0b7b2e665781f94cef4d812***"
-        auth_token = "3f13cf63cd93c88063c629b6204*****"
-        # client = Client(account_sid, auth_token)
-        # message = client.messages.create(
-        #     body = message,
-        #     to = number,
-        #     from_ = "+17163303168"
-        #     )
-        # print(message.sid)
+        account_sid = "AC1b77cc0b7b2e665781f94cef4d812a8"
+        auth_token = "3f13cf63cd93c88063c629b620433b0"
+        client = Client(account_sid, auth_token)
+        message = client.messages.create(
+            body = "Sami",
+            to = "+213557098309",
+            from_ = "+17163303168"
+            )
+        print(message.sid)
         print(self.message)
         print(self.number)
         print("SMS SENDED OK")
